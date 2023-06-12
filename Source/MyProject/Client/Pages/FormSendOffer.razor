@@ -1,0 +1,28 @@
+﻿<div class="bgr">
+</div>
+<div class="prvMail">
+    <div>
+        <button class="btn float-end" onclick="@closeThis"><i class="fa-regular fa-rectangle-xmark"></i></button>
+    </div>
+
+    <h3>Xem trước mail </h3>
+    <h4>Người nhận : @candidateSendOffer.Email </h4>
+
+    <div class="content-prv-mail">
+        @((MarkupString)htmlString)
+    </div>
+
+
+    <h4>Tệp Đính Kèm :</h4>
+    <InputFile multiple OnChange="LoadFile"></InputFile>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary" @onclick="@sendOffer">Gửi</button>
+    </div>
+
+</div>
+
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}
+

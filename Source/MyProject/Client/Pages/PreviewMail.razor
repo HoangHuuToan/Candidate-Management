@@ -1,0 +1,32 @@
+﻿<div class="bgr">
+</div>
+<div class="prvMail">
+    <div>
+        <button class="btn float-end" onclick="@ClosePrv"><i class="fa-regular fa-rectangle-xmark"></i></button>
+    </div>
+    <h3>PreviewMail</h3> 
+
+    <h5>Người Gửi :SSV System</h5> 
+    <br />
+    <h5>Người Nhận :</h5> <input type="text" @bind="@candidate.Email" />
+    <br /> 
+    <h5>Tiêu Đề :</h5> <input style="width:200px" type="text" @bind="@templatemail.tittleMail" />
+    <br />
+    <h5>Nội Dung :</h5>
+    <br />
+    <p>
+        <textarea @bind="templatemail.contentMail" rows="10" cols="50">
+
+        </textarea>
+
+        <br />
+        Thời Gian : <input type="datetime" @bind="@candidate.timeInterview" />
+        <br />
+        Địa Điểm  : <input type="text" @bind="@candidate.addressInterview" />
+    </p>
+    <button class="btn btn-info float-end" onclick="@sendMail">Gửi Mail</button>
+</div>
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}

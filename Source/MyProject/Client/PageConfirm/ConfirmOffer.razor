@@ -1,0 +1,104 @@
+﻿@page "/confirmOffer/{id_candidate:int?}"
+@using MyProject.Shared.Entities
+@using MyProject.Client.LoginManagements
+@inject IJSRuntime JS
+
+<header>
+    <style>
+        .sidebar {
+            display: none;
+        }
+    </style>
+</header>
+@if (Checked)
+{
+    <h3>Bạn đã xác nhận link này rồi !</h3>
+    @if (isLoading)
+    {
+        <MyProject.Client.Pages.LoadingCpn></MyProject.Client.Pages.LoadingCpn>
+    }
+}
+else
+{
+    <h3>ConfirmOffer</h3>
+    <span>Tôi đã nhận và đồng ý với Offer !!!</span>
+    <button class="btn btn-info" @onclick="@confirmOffer">Xác Nhận</button>
+    <button class="btn btn-danger" @onclick="@confirmOffer">Từ Chối</button>
+}
+
+
+@code {
+
+    [Parameter]
+
+    public int id_candidate { get; set; }
+    public Candidate candidate { get; set; } = new Candidate();
+    public bool statusLogin { get; set; } = false;
+    public bool Checked { get; set; } = false;
+    public bool isLoading { get; set; } = false;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoading = true;
+        await getData();
+        isLoading = false;
+        StateHasChanged();
+    }
+
+    public async Task getData()
+    {
+        HttpClient httpClient = new HttpClient();
+        var response = await httpClient.GetAsync("https://localhost:44365/api/Candidate/" + id_candidate);
+        candidate = response.Content.ReadFromJsonAsync<Candidate>().Result;
+
+        if (candidate.Status == 11 || candidate.Status == 12)
+        {
+            Checked = true;
+            StateHasChanged();
+        }
+        StateHasChanged();
+    }
+    public async Task confirmOffer()
+    {
+        try
+        {
+            //update
+            HttpClient httpClient = new HttpClient();
+            candidate.Status = 11;
+            await httpClient.PutAsJsonAsync("https://localhost:44365/api/Candidate/" + candidate.id, candidate);
+            await JS.InvokeVoidAsync("alert", "Xác Nhận Thành Công!");
+            await JS.InvokeVoidAsync("CloseCurrentTab");
+
+        }
+        catch (Exception ex)
+        {
+            await JS.InvokeVoidAsync("alert", "Xác Nhận Không Thành Công!");
+            Console.WriteLine(ex);
+        }
+        await getData();
+        StateHasChanged();
+
+    }
+    public async Task refuseOffer()
+    {
+        try
+        {
+            //update
+            HttpClient httpClient = new HttpClient();
+            candidate.Status = 12;
+            await httpClient.PutAsJsonAsync("https://localhost:44365/api/Candidate/" + candidate.id, candidate);
+            await JS.InvokeVoidAsync("alert", "Từ Chối Thành Công!");
+            await JS.InvokeVoidAsync("CloseCurrentTab");
+
+        }
+        catch (Exception ex)
+        {
+            await JS.InvokeVoidAsync("alert", "Từ Chối Không Thành Công!");
+            Console.WriteLine(ex);
+        }
+
+        await getData();
+        StateHasChanged();
+    }
+}

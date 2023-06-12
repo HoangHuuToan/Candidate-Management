@@ -1,0 +1,169 @@
+﻿@page "/addifinterview"
+<h3>Nhập Thông Tin Phỏng Vấn</h3>
+<div class="d-flex flex-row">
+
+    <div class="m-2">
+        <label>Tìm Kiếm:</label>
+        <input @oninput="(e) => {search(e.Value.ToString());}" class="form-control" />
+    </div>
+
+
+    <div class="m-2">
+        <label>Vị Trí:</label>
+        <select @onchange="(e) => filterPositions(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 1))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+
+
+    <div class="m-2">
+        <label>Chức Danh:</label>
+        <select @onchange="(e) => filterRoles(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 2))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+</div>
+
+<table class="table-danger table-bordered  text-center tableds">
+
+    <tr class="p-3 mb-2 bg-success text-white">
+        <th>
+            ID
+        </th>
+
+        <th>
+            Chức Danh
+        </th>
+
+        <th>
+            Vị Trí
+        </th>
+
+        <th>
+            Họ và Tên
+        </th>
+
+        <th>
+            Số Điện Thoại
+        </th>
+
+        <th>
+            Email
+        </th>
+
+        <th>
+            Liên Hệ Được ?
+        </th>
+
+        <th>
+            Thời Gian Phỏng Vấn
+        </th>
+
+        <th>
+            Địa Điểm Phỏng Vấn
+        </th>
+
+        <th>
+            Chú Thích
+        </th>
+
+        <th>
+            Trạng Thái
+        </th>
+
+        <th>
+            Hành Động
+        </th>
+    </tr>
+    @foreach (var candidate in candidateaddTTinterview)
+    {
+        <tr>
+            <td>
+                @candidate.strID
+            </td>
+
+            <td>
+                @candidate.nameRole
+            </td>
+
+            <td>
+                @candidate.namePosition
+            </td>
+
+            <td>
+                @candidate.Name
+            </td>
+
+            <td>
+                @candidate.NumberPhone
+            </td>
+
+            <td>
+                @candidate.Email
+            </td>
+
+            <td>
+                <select @onchange="(e)=>rf(e,candidate.id)">
+                    @if (candidate.Contacting == 1)
+                    {
+                        <option value="0"> Chưa Liên Hệ</option>
+                        <option value="1" selected> Không Liên Hệ Được</option>
+                        <option value="2"> Liên Hệ Thành Công</option>
+                    }
+                    else if (candidate.Contacting == 2)
+                    {
+                        <option value="0"> Chưa Liên Hệ</option>
+                        <option value="1"> Không Liên Hệ Được</option>
+                        <option value="2" selected> Liên Hệ Thành Công</option>
+                    }
+                    else
+                    {
+                        <option value="0" selected> Chưa Liên Hệ</option>
+                        <option value="1"> Không Liên Hệ Được</option>
+                        <option value="2"> Liên Hệ Thành Công</option>
+                    }
+                </select>
+            </td>
+
+            <td>
+                <input @bind="@candidate.timeInterview" type="datetime" />
+
+            </td>
+
+            <td>
+                <input @bind="@candidate.addressInterview" />
+            </td>
+
+            <td>
+                <input @bind="@candidate.Note" />
+            </td>
+
+            <td>
+                @candidate.nameStatus
+            </td>
+
+            <td>
+                <button class="btn btn-info float-end" @onclick="()=>showSaveTTCpn(candidate.id_calendar,candidate.id)">Nhập TT PV</button>
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+@if (ShowSaveCpn)
+{
+    <SaveTTInterview Close="CloseSaveTTCpn" calendarSave="calendarSave"></SaveTTInterview>
+}
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}

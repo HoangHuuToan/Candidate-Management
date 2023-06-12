@@ -1,0 +1,40 @@
+﻿@page "/screencalendarinterview"
+<h3>Lịch Phỏng Vấn</h3>
+<div class="d-flex flex-row">
+
+    <div class="m-2">
+        <label>Tìm Kiếm:</label>
+        <input @oninput="(e) => {search(e.Value.ToString());}" class="form-control" />
+    </div>
+    
+</div>
+<table class="table-danger table-bordered  text-center tableds">
+    <tr class="p-3 mb-2 bg-success text-white">
+        <th>Tên Ứng Viên</th>
+        <th>Thời Gian</th>
+        <th>Địa Điểm</th>
+        <th>Tiêu Đề</th>
+        <th>Chi Tiết</th>
+    </tr>
+
+    @foreach (var calendar in calendarInterviewshasroom)
+    {
+        <tr>
+            <th>@calendar.nameCandidate</th>
+            <th>@calendar.timeInterview</th>
+            <th>@calendar.addressInterview</th>
+            <th>@calendar.nameInterview</th>
+            <th> <button class="btn btn-info" @onclick="()=>viewDetail(calendar.id)">Xem Chi  Tiết </button> </th>
+        </tr>
+
+    }
+    
+</table>
+@if (isShowDetail == true)
+{
+    <DetailCalendarInterview  calendarInterview="@calendarInterviewViewDetail" userInterviews="@userInterviews" Close="@CloseDetail"></DetailCalendarInterview>
+}
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}

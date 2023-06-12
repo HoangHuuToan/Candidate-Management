@@ -1,0 +1,257 @@
+﻿@page "/sendMailInterview"
+<h3>Gửi Mail Ứng Viên</h3>
+<div class="d-flex flex-row">
+
+    <div class="m-2">
+        <label>Tìm Kiếm:</label>
+        <input @oninput="(e) => {search(e.Value.ToString());}" class="form-control" />
+    </div>
+
+    <div class="m-2">
+        <label>Vị Trí:</label>
+        <select @onchange="(e) => filterPositions(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 1))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+
+    <div class="m-2">
+        <label>Chức Danh:</label>
+        <select @onchange="(e) => filterRoles(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 2))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+</div>
+
+<button class="btn btn-info float-end" onclick="@CreateCalendar">Tạo Lịch</button>
+<button class="btn btn-info float-end" onclick="@sendMail">Gửi Mail</button>
+
+<table class="table-danger table-bordered  text-center tableds">
+
+    <tr class="p-3 mb-2 bg-success text-white">
+
+        <th>
+              <input type="checkbox" onclick="@changeCheckedAll"/> 
+        </th>
+
+        <th>
+            ID
+        </th>
+
+        <th>
+            Chức Danh
+        </th>
+
+        <th>
+            Vị Trí
+        </th>
+
+        <th>
+            Họ và Tên
+        </th>
+
+        <th>
+            Số Điện Thoại
+        </th>
+
+        <th>
+            Email
+        </th>
+
+        <th>
+            Liên Hệ Được ?
+        </th>
+
+        <th>
+            Thời Gian Phỏng Vấn
+        </th>
+
+        <th>
+            Địa Điểm Phỏng Vấn
+        </th>
+
+        <th>
+            Chú Thích
+        </th>
+
+        <th>
+            Trạng Thái
+        </th>
+
+        <th>
+            Hành Động
+        </th>
+
+
+    </tr>
+
+    @foreach (var candidate in candidateSendMails)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" @onchange="(e)=>changeChecked(e,candidate.id)" checked="@candidate.Checked" />
+            </td>
+
+            <td>
+                @candidate.strID
+            </td>
+
+            <td>
+                @candidate.nameRole
+            </td>
+
+            <td>
+                @candidate.namePosition
+            </td>
+
+            <td>
+                @candidate.Name
+            </td>
+
+            <td>
+                @candidate.NumberPhone
+            </td>
+
+            <td>
+                @candidate.Email
+            </td>
+
+            <td>
+                <select @onchange="(e)=>rf(e,candidate.id)">
+                    @if (candidate.Contacting == 1)
+                    {
+                        <option value="0"> Chưa Liên Hệ</option>
+                        <option value="1" selected> Không Liên Hệ Được</option>
+                        <option value="2"> Liên Hệ Thành Công</option>
+                    }
+                    else if (candidate.Contacting == 2)
+                    {
+                        <option value="0"> Chưa Liên Hệ</option>
+                        <option value="1"> Không Liên Hệ Được</option>
+                        <option value="2" selected> Liên Hệ Thành Công</option>
+                    }
+                    else
+                    {
+                        <option value="0" selected> Chưa Liên Hệ</option>
+                        <option value="1"> Không Liên Hệ Được</option>
+                        <option value="2"> Liên Hệ Thành Công</option>
+                    }
+
+                </select>
+            </td>
+
+            <td>
+                @if (candidate.Status == 5 && candidate.Contacting == 2)
+                {
+                    bool nhap = true;
+                    foreach (var calendar in CalendarInterviewPVV1)
+                    {
+                        if (candidate.id == calendar.idCandidate)
+                        {
+                            candidate.timeInterview = calendar.timeInterview;
+                            <input @bind="@candidate.timeInterview" type="datetime" />
+                            nhap = false;
+                        }
+
+                    }
+                    if (nhap)
+                    {
+                        <input @bind="@candidate.timeInterview" type="datetime" />
+                    }
+                }
+                @if (candidate.Status == 7 && candidate.Contacting == 2)
+                {
+                    bool nhap = true;
+                    foreach (var calendar in CalendarInterviewPVV2)
+                    {
+                        if (candidate.id == calendar.idCandidate)
+                        {
+                            candidate.timeInterview = calendar.timeInterview;
+                            <input @bind="@candidate.timeInterview" type="datetime" />
+                            nhap = false;
+                        }
+
+                    }
+                    if (nhap)
+                    {
+                        <input @bind="@candidate.timeInterview" type="text" />
+                    }
+                }
+            </td>
+
+            <td>
+                @if (candidate.Status == 5 && candidate.Contacting == 2)
+                {
+                    bool nhap = true;
+                    foreach (var calendar in CalendarInterviewPVV1)
+                    {
+                        if (candidate.id == calendar.idCandidate)
+                        {
+                            candidate.addressInterview = calendar.addressInterview;
+                            <input @bind="@candidate.addressInterview" type="text" />
+                            nhap = false;
+                        }
+                    }
+                    if (nhap)
+                    {
+                        <input @bind="@candidate.addressInterview" type="text" />
+                    }
+                }
+
+                @if (candidate.Status == 7 && candidate.Contacting == 2)
+                {
+                    bool nhap = true;
+                    foreach (var calendar in CalendarInterviewPVV2)
+                    {
+                        if (candidate.id == calendar.idCandidate)
+                        {
+                            candidate.addressInterview = calendar.addressInterview;
+                            <input @bind="@candidate.addressInterview" type="text" />
+                            nhap = false;
+                        }
+                    }
+                    if (nhap)
+                    {
+                        <input @bind="@candidate.addressInterview" type="text" />
+                    }
+                }
+            </td>
+
+            <td>
+                <input @bind="candidate.Note" type="text" />
+            </td>
+
+            <td>
+                @candidate.nameStatus
+            </td>
+
+            <td>
+
+
+                @if (CalendarInterviewAll.Exists(x => x.idCandidate == candidate.id && candidate.Contacting == 2))
+                {
+                    <button class="btn btn-info" @onclick="()=>prvMailCpn(candidate.id)">Xem trước Mail</button>
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@if (prvMail)
+{
+    <PreviewMail Close="CloseprvMailCpn" candidate="candidateprvMail" templatemail="mailCurrently"></PreviewMail>
+}
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}

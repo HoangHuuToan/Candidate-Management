@@ -1,0 +1,64 @@
+﻿<div class="bgr">
+</div>
+<div class="prvMail">
+    <div>
+        <button class="btn float-end" onclick="@CloseThis"><i class="fa-regular fa-rectangle-xmark"></i></button>
+    </div>
+    <h3>Đánh Giá Ứng Viên : @CandidateEvaluate.Name</h3>
+    <select @bind="equal">
+        <option selected value="1">
+            Chưa Đánh Giá
+        </option>
+        <option value="2">
+            Đạt
+        </option>
+        <option value="3">
+            Không Đạt
+        </option>
+
+
+    </select>
+
+    @equal
+    <br />
+
+    <h3>Người Đánh Giá :</h3>
+
+    <select @bind="id_user_evaluate">
+        @foreach (var userEvaluate in calendarInterview_UserInterviewsUnevaluate)
+        {
+            <option value="@userEvaluate.id_userinterview">
+                @userEvaluate.nameUser
+            </option>
+        }
+    </select>
+
+    @if (equal == 3)
+    {
+        <div>
+            <h5> Lý Do Loại:</h5>
+            <input @bind="note" type="text" /> <span style="color:red">(*)</span>
+        </div>
+
+    }
+    @if (equal == 2)
+    {
+        <div>
+            <h5>Nhận Xét:</h5>
+            <input @bind="note" type="text" />
+        </div>
+
+    }
+    <div>
+        <button class="btn btn-primary" @onclick="Evaluate">Đánh Giá</button>
+    </div>
+    
+
+</div>
+
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}
+
+

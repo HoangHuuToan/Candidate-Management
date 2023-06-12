@@ -1,0 +1,59 @@
+﻿
+<div class="bgr"></div>
+<div class="prvMail">
+
+    <div>
+        <button class="btn float-end" onclick="@Closethis"><i class="fa-regular fa-rectangle-xmark"></i></button>
+    </div>
+    <label>Họ Tên Ứng Viên :</label>
+    <span>@calendarInterview.nameCandidate </span>
+    <br />
+
+
+    <label>Tiêu Đề :</label>
+    <span>@calendarInterview.nameInterview</span>
+    <br />
+
+    <label>Thời Gian :</label>
+    <input type="text" @bind="@calendarInterview.timeInterview"/>
+    <br />
+
+    <label>Địa Điểm :</label>
+    <input type="text" @bind="@calendarInterview.addressInterview"/>
+    <br />
+
+    <label>Người Phỏng Vấn :</label>
+
+    @foreach (var userInterview in userInterviews)
+                        {
+                            <div class="d-flex">
+                                @if (userInterview.selected == true)
+                                {
+                                    <input type="checkbox" checked @onchange="()=>checkListUserInterview(userInterview.id)" />
+                                    <span>@userInterview.name</span>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @onchange="()=>checkListUserInterview(userInterview.id)" />
+                                    <span>@userInterview.name</span>
+                                }
+
+                            </div>
+                        }
+
+    <br />
+
+    <div class="d-flex justify-content-around">
+        <button class="btn btn-info" @onclick="update">Update</button>
+        <button class="btn btn-danger" @onclick="showConfirmDlt">Delete</button>
+    </div>
+
+</div>
+@if (showCfDlt)
+{   
+    <ConfirmDelete Close="CloseConfirmDlt" Delete="()=>delete(calendarInterview.id)" CloseDetail="Closethis"></ConfirmDelete>
+} 
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}

@@ -1,0 +1,12 @@
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\bin\Debug\net6.0\MyProject.Shared.deps.json
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\bin\Debug\net6.0\MyProject.Shared.dll
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\bin\Debug\net6.0\MyProject.Shared.pdb
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\MyProject.Shared.csproj.AssemblyReference.cache
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\MyProject.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\MyProject.Shared.AssemblyInfoInputs.cache
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\MyProject.Shared.AssemblyInfo.cs
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\MyProject.Shared.csproj.CoreCompileInputs.cache
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\MyProject.Shared.dll
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\refint\MyProject.Shared.dll
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\MyProject.Shared.pdb
+C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Shared\obj\Debug\net6.0\ref\MyProject.Shared.dll

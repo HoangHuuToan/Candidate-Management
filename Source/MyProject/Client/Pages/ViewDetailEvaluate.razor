@@ -1,0 +1,81 @@
+﻿<div class="bgr">
+</div>
+<div class="prvMail">
+    <div>
+        <button class="btn float-end" onclick="@closeThis"><i class="fa-regular fa-rectangle-xmark"></i></button>
+    </div>
+    <h3>Chi Tiết Đánh Giá</h3>
+
+    <h4>Họ Tên : @GradeTestCandidate.Name</h4>
+    <h4>Chức Danh :@GradeTestCandidate.nameRole</h4>
+    <h4>Vị Trí :@GradeTestCandidate.namePosition</h4>
+    <h4>Điểm Test :@GradeTestCandidate.gradeTest</h4>
+    <h4>Trạng Thái : @GradeTestCandidate.nameStatus</h4>
+
+    @if (EvaluateCandidateViewDetail.Count != 0)
+    {
+        <table class="table-danger table-bordered  text-center tableds">
+            <tr class="p-3 mb-2 bg-success text-white">
+                <th>
+                    ID
+                </th>
+                <th>Phỏng Vấn</th>
+                <th>
+                    Người Đánh Giá
+                </th>
+                <th>
+                    Kết Quả
+                </th>
+
+                <th>
+                    Nhận Xét (Chú Ý)
+                </th>
+
+                <th>
+                    Note
+                </th>
+            </tr>
+
+            @foreach (var candidateEvaluate in EvaluateCandidateViewDetail)
+            {
+                <tr>
+                    <td>
+                        @candidateEvaluate.strID
+                    </td>
+                    <td>
+                        @candidateEvaluate.name_interview
+                    </td>
+                    <td>
+                        @candidateEvaluate.userinterviewName
+                    </td>
+                    <td>
+                        @if (@candidateEvaluate.evaluate == 1)
+                        {
+                            <span>Chưa Đánh Giá</span>
+                        }
+                        else if (@candidateEvaluate.evaluate == 2)
+                        {
+                            <span>Đạt</span>
+                        }
+                        else
+                        {
+                            <span>Không Đạt</span>
+                        }
+
+                    </td>
+                    <td>
+                        @candidateEvaluate.note_evaluate
+                    </td>
+                    <td>
+                        @candidateEvaluate.Note
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+
+    }
+
+
+</div>

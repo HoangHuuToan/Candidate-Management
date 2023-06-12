@@ -1,0 +1,49 @@
+﻿@inherits LayoutComponentBase
+@using MyProject.Client.LoginManagements;
+@inject IJSRuntime JS
+
+<div class="page">
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+    @if (statusLogin)
+    {
+        <div>
+            <button class="btn btn-dark" @onclick="Logout">Đăng Xuất</button>
+        </div>
+    }
+</div>
+
+
+@code
+{
+
+    public bool isLoading { get; set; } = false;
+    public bool statusLogin { get; set; } = false;
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            isLoading = true;
+            //await JS.InvokeVoidAsync("localStorage.clear");
+            LoginManagement loginManagement = new LoginManagement(JS);
+            statusLogin = await loginManagement.checkLogin();
+
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        isLoading = false;
+    }    
+    
+    public void Logout()
+    {
+        LoginManagement loginManagement = new LoginManagement(JS);
+        loginManagement.Logout();
+    }
+
+}

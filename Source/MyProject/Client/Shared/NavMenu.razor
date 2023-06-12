@@ -1,0 +1,80 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">MyProject</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="importCandidate" Match="NavLinkMatch.All">
+                <span class="" aria-hidden="true"></span> Nhập Thông Tin Ứng Viên
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="filterCandidate">
+                <span class="" aria-hidden="true"></span> Lọc Ứng Viên
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="contactingCandidate">
+                <span class="" aria-hidden="true"></span> Liên Hệ Ứng Viên
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="sendMailInterview">
+                <span class="" aria-hidden="true"></span> Gửi Mail Phỏng Vấn
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="addifinterview">
+                <span class="" aria-hidden="true"></span> Nhập Thông Tin Phỏng Vấn
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="screencalendarinterview">
+                <span class="" aria-hidden="true"></span> Lịch Phỏng Vấn
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="importevaluatecandidate">
+                <span class="" aria-hidden="true"></span> Đánh Giá Ứng Viên
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="evaluated">
+                <span class="" aria-hidden="true"></span> Ứng Viên Đã Đánh Giá
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="sendequalupdateSTT">
+                <span class="" aria-hidden="true"></span> Kết Quả - Gửi Offer
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="candidateall">
+                <span class="" aria-hidden="true"></span> Tất Cả Ứng Viên
+            </NavLink>
+        </div>
+        
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

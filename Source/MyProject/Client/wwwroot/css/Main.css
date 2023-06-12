@@ -1,0 +1,80 @@
+﻿body {
+}
+.cpn_confirm {
+    width:700px;
+    background-color:cornflowerblue;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    align:center;
+    padding:inherit;
+    border-radius:10px;
+}
+
+
+.bgr {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #464242;
+    opacity: 0.5;
+}
+.tableds
+{
+    width:100%;
+
+}
+.cpn_cv {
+    width: 70%;
+    background-color: cornflowerblue;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    align: center;
+    padding: inherit;
+    border-radius: 10px;
+}
+.cv
+{
+    width:90%;
+    height:700px;
+}
+.prvMail {
+    padding: 20px !important;
+    background-color: cornflowerblue;
+    width: 70%;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    align: center;
+    padding: inherit;
+    border-radius: 10px;
+}
+.saveTTPV {
+    background-color: cornflowerblue;
+    width: 70%;
+    position: fixed;
+    top: 30%;
+    left: 15%;
+    align: center;
+    padding: inherit;
+    border-radius: 10px;
+}
+.content_loading
+{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+.img_loading
+{
+    width:50px;
+    align-items:center;
+}
+.content-prv-mail {
+    max-height: 500px;
+    overflow-y: auto;
+}

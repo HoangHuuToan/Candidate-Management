@@ -1,0 +1,116 @@
+﻿@page "/candidateall"
+<h3>Tất Cả Ứng Viên</h3>
+
+<div class="d-flex flex-row">
+    <div class="m-2">
+        <label>Tìm Kiếm:</label>
+        <input @oninput="(e) => {search(e.Value.ToString());}" class="form-control" />
+
+    </div>
+
+
+    <div class="m-2">
+
+        <label>Vị Trí:</label>
+        <select @onchange="(e) => ChangeDataFilter(e,null,null)" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 1))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+
+    <div class="m-2">
+        <label>Chức Danh:</label>
+        <select @onchange="(e) => ChangeDataFilter(null,e,null)" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 2))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+    
+    <div class="m-2">
+        <label>Trạng Thái:</label>
+        <select @onchange="(e) => ChangeDataFilter(null,null,e)" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var stt in statusCandidates)
+            {
+                <option value="@stt.id">@stt.statusName</option>
+            }
+        </select>
+    </div>
+</div>
+
+<table class="table-danger table-bordered  text-center tableds">
+    <tr class="p-3 mb-2 bg-success text-white">
+        <th>
+            ID
+        </th>
+        <th>
+            Chức Danh
+        </th>
+        <th>
+            Vị Trí
+        </th>
+        <th>
+            Họ và Tên
+        </th>
+        <th>
+            Số Điện Thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Trạng Thái
+        </th>
+        <th>
+            Hành Động
+        </th>
+
+    </tr>
+    @foreach (var candidate in CandidateEvaluatesTmp)
+    {
+        <tr>
+            <td>
+                @candidate.strID
+            </td>
+            <td>
+                @candidate.nameRole
+            </td>
+            <td>
+                @candidate.namePosition
+            </td>
+            <td>
+                @candidate.Name
+            </td>
+            <td>
+                @candidate.NumberPhone
+            </td>
+            <td>
+                @candidate.Email
+            </td>
+            <td>
+                @candidate.nameStatus
+            </td>
+            <td>
+                <button class="btn btn-primary" @onclick="()=>update(candidate.id)">Chỉnh Sửa</button>
+            </td>
+
+        </tr>
+
+    }
+
+</table>
+
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}
+@if (showCpnUpdate)
+{
+    <UpdateCandidate candidate="CandidateUpdate" Close="closeUpdate"></UpdateCandidate>
+}

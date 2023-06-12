@@ -1,0 +1,120 @@
+﻿@page "/filterCandidate"
+
+@using MyProject.Shared.Entities
+
+
+<h3>Lọc Ứng Viên</h3>
+<div class="d-flex flex-row">
+    <div class="m-2">
+        <label>Tìm Kiếm:</label>
+        <input @oninput="(e) => {search(e.Value.ToString());}" class="form-control" />
+    </div>
+
+    <div class="m-2">
+        <label>Vị Trí:</label>
+        <select @onchange="(e) => filterPositions(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 1))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+    <div class="m-2">
+        <label>Chức Danh:</label>
+        <select @onchange="(e) => filterRoles(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 2))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+</div>
+
+<table class="table-danger table-bordered  text-center tableds">
+
+    <tr class="p-3 mb-2 bg-success text-white">
+        <th>
+            ID
+        </th>
+
+        <th>
+            Chức Danh
+        </th>
+
+        <th>
+            Vị Trí
+        </th>
+
+        <th>
+            Họ Tên
+        </th>
+
+        <th>
+            Ngày Sinh
+        </th>
+
+        <th>
+            Địa Chỉ
+        </th>
+
+        <th>
+            Nguồn
+        </th>
+
+        <th>
+            Đã Từng Apply
+        </th>
+
+        <th>
+            Duyệt / Loại
+        </th>
+
+
+    </tr>
+
+
+    @foreach (Candidate candidate in candidateFilters)
+    {
+        <tr>
+
+            <td>
+                <button @onclick="()=>showSV(candidate.id)" class="btn btn-info">@candidate.strID</button>
+            </td>
+            <td>@candidate.nameRole</td>
+            <td>@candidate.namePosition</td>
+            <td>@candidate.Name</td>
+            <td>@string.Format("{0:dd/MM/yyyy}",candidate.BirthDay)</td>
+            <td>@candidate.Address</td>
+            <td>@candidate.nameOrigin</td>
+            <td>
+                @if (@candidate.Applied == 0)
+                {
+                    <i style="color:red" class="fa-solid fa-rectangle-xmark"></i>
+                }
+                else
+                {
+                    <i style="color:forestgreen" class="fa-solid fa-check-to-slot"></i>
+                }
+            </td>
+            <td>
+                <button class="btn btn-primary" @onclick="()=>browsingCandidate(candidate.id)">Duyệt</button>
+                <button class="btn btn-danger" @onclick="()=>removingCandidate(candidate.id)">Loại</button>
+            </td>
+
+        </tr>
+
+    }
+
+
+</table>
+
+@if (viewCV)
+{
+    <ViewCVCandidate pathCV="@pathViewCV" closeViewCV="closeviewCV"></ViewCVCandidate>
+}
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}

@@ -1,0 +1,116 @@
+﻿@page "/importCandidate"
+@using MyProject.Shared.Entities
+
+
+    <PageTitle>Import Candidate</PageTitle>
+
+    <h1>Nhập Ứng Viên</h1>
+
+    <EditForm Model="@candidate">
+    <table class="tb_importcdd table tableds">
+
+            <tr>
+                <td>
+                    <label>Chức Danh</label>
+                    <select @bind="candidate.Role">
+                        @foreach (var value in valuesOfCombs)
+                        {
+                            if (value.valueOfComb == 2)
+                            {
+                                <option value="@value.id">
+                                    @value.value
+                                </option>
+                            }
+                        }
+                    </select>
+                </td>
+                <td>
+                    <label>Địa Chỉ</label>
+                    <input @bind="candidate.Address" type="text" />
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>Vị Trí</label>
+                    <select @bind="candidate.Position">
+
+                        @foreach (ValuesOfComb value in valuesOfCombs)
+                        {   @if (value.valueOfComb == 1)
+                            {
+                                <option value="@value.id">
+                                    @value.value
+                                </option>
+                            }
+                        }
+
+
+                    </select>
+                </td>
+                <td>
+                    <label>Số Điện Thoại</label>
+                    <input @bind="candidate.NumberPhone" type="text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Họ và Tên</label>
+                    <input @bind="candidate.Name" type="text" />
+                </td>
+                <td>
+                    <label>Email</label>
+                    <input @bind="candidate.Email" type="text" />
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>Ngày Sinh</label>
+                    <input @bind="candidate.BirthDay" type="date" />
+                </td>
+                <td>
+                    <label>Nguồn</label>
+                    <select @bind="candidate.Origin">
+                        @foreach (ValuesOfComb value in valuesOfCombs)
+                        {   @if (value.valueOfComb == 3)
+                            {
+                                <option value="@value.id">
+                                    @value.value
+                                </option>
+                            }
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <label>Upload CV Ứng Viên</label>
+
+                    <InputFile OnChange="LoadFile"></InputFile>
+                </td>
+            </tr>
+
+
+
+
+        </table>
+
+        <button onclick="@show_importCandidate">Nhập</button>
+    </EditForm>
+
+@if(show_Cpn_Confirm)
+{ 
+    <Confirm_Import_Candidate @ref="Confirm_Import_Candidate" candidate_insert="candidate" closeConfirm="closeCF"></Confirm_Import_Candidate>
+}
+
+
+
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}
+

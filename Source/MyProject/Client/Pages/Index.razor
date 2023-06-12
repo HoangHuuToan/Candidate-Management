@@ -1,0 +1,17 @@
+﻿@page "/"
+
+@if (statusLogin)
+{
+    @layout MyLayout
+    <span>Xin chào</span>
+    <h3>@dataUserloginLocalStorate.Name</h3>
+}
+
+<h3>Chào Mừng Bạn Đến Trang Web Tuyển Dụng </h3>
+
+@if (!statusLogin)
+{
+    <div>
+        <button class="btn btn-primary"> <a href="https://localhost:44365/login" style="color:white;text-decoration:none;">Đăng Nhập</a></button>
+    </div>
+}

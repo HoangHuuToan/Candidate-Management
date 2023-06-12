@@ -1,0 +1,106 @@
+﻿@page "/evaluated"
+<h3>Kế Quả Đánh Giá</h3>
+
+
+<div class="d-flex flex-row">
+    <div class="m-2">
+        <label>Tìm Kiếm:</label>
+        <input @oninput="(e) => {search(e.Value.ToString());}" class="form-control" />
+    </div>
+
+    <div class="m-2">
+        <label>Vị Trí:</label>
+        <select @onchange="(e) => filterPositions(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 1))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+
+
+    <div class="m-2">
+        <label>Chức Danh:</label>
+        <select @onchange="(e) => filterRoles(e.Value.ToString())" class="form-select">
+            <option value="0" selected>ALL</option>
+            @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 2))
+            {
+                <option value="@vlcbb.id">@vlcbb.value</option>
+            }
+        </select>
+    </div>
+</div>
+
+
+<table class="table-danger table-bordered  text-center tableds">
+    <tr class="p-3 mb-2 bg-success text-white">
+        <th>
+            ID
+        </th>
+        <th>
+            Họ Tên
+        </th>
+        <th>
+            Chức Danh
+        </th>
+        <th>
+            Vị Trí
+        </th>
+        <th>
+            Số Điện Thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Kết Quả
+        </th>
+        <th>
+            Chi Tiết Đánh Giá
+        </th>
+
+    </tr>
+
+
+    @foreach (var candidate_evaluated in CandidateEvaluates)
+    {
+        <tr>
+            <th>
+                @candidate_evaluated.strID
+            </th>
+            <th>
+                @candidate_evaluated.Name
+            </th>
+            <th>
+                @candidate_evaluated.nameRole
+            </th>
+            <th>
+                @candidate_evaluated.namePosition
+            </th>
+            <th>
+                @candidate_evaluated.NumberPhone
+            </th>
+            <th>
+                @candidate_evaluated.Email
+            </th>
+            <th>
+                @candidate_evaluated.nameStatus
+            </th>
+            <th>
+                <button class="btn btn-primary" @onclick="()=>viewEvaluate(candidate_evaluated.id)"> Xem Chi Tiết Đánh Giá </button>
+            </th>
+        </tr>
+
+    }
+
+</table>
+@if (showformevaluate)
+{
+    <ViewDetailEvaluate GradeTestCandidate="GradeTestCandidate" EvaluateCandidateViewDetail="EvaluateCandidateViewDetail" CloseThis="@CloseviewEvaluate"></ViewDetailEvaluate>
+}
+
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}

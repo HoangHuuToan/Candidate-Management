@@ -1,0 +1,69 @@
+﻿<div class="bgr"></div>
+<div class="prvMail">
+    <h3>ConfirmDelete</h3>
+    <h4>Bạn có chắc muốn xóa lịch phỏng vấn này ?</h4>
+    <div class="d-flex justify-content-around">
+        <button class="btn btn-info" @onclick="DeleteCalendarThis">Xóa</button>
+        <button class="btn btn-danger" @onclick="Closethis">Thoát</button>
+    </div>
+
+</div>
+
+@if (isLoading)
+{
+    <LoadingCpn></LoadingCpn>
+}
+@code
+{
+
+
+    #region properties
+    [Parameter]
+    public EventCallback Delete { get; set; }
+
+    [Parameter]
+    public EventCallback Close { get; set; }
+
+    [Parameter]
+    public EventCallback CloseDetail { get; set; }
+
+    [Inject] IJSRuntime JS { get; set; }
+
+    public bool isLoading { get; set; } = false;
+    #endregion properties
+
+    #region functions
+
+    /// <summary>
+    /// Close form confirm delate
+    /// </summary>
+    public void Closethis()
+    {
+        isLoading = true;
+        Close.InvokeAsync();
+        isLoading = false;
+    }
+
+    /// <summary>
+    /// - Xóa lịch pv hiện tại
+    /// </summary>
+    /// <returns></returns>
+    public async Task DeleteCalendarThis()
+    {   
+        isLoading = true;
+        try
+        {
+            await Delete.InvokeAsync();
+            await JS.InvokeVoidAsync("alert", "Xóa thành công");
+            await Close.InvokeAsync();
+            await CloseDetail.InvokeAsync();
+            StateHasChanged();
+        }catch(Exception e)
+        {
+            await JS.InvokeVoidAsync("alert", "Xóa không thành công");
+        }
+        isLoading = false;
+        
+    }
+    #endregion functions
+}

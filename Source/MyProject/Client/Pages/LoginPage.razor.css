@@ -1,0 +1,33 @@
+﻿body {
+}
+
+.form-login {
+    width: 500px;
+    height: 300px;
+    background-color: cornflowerblue;
+    align: center;
+    padding: inherit;
+    border-radius: 10px;
+    margin: auto !important;
+}
+.fixed-strart
+{
+    left:0;
+}
+
+.btn-login {
+    width: 80%;
+    background-image: linear-gradient(90deg, #57D4DF 0%, #9905E5 100%);
+    color: white;
+    float: inline-end;
+}
+.btn-forgot-pass {
+    margin-left: 325px
+}
+.btn-register {
+    background-color: #42b72a;
+}
+.page > .sidebar
+{
+    display:none !important;
+}
