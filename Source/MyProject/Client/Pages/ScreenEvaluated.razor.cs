@@ -104,9 +104,9 @@ namespace MyProject.Client.Pages
         }
 
         /// <summary>
-        /// - Lọc theo vị trí
+        /// - Lọc theo Ngôn Ngữ
         /// </summary>
-        /// <param name="positionFilter">id vị trí cần lọc</param>
+        /// <param name="positionFilter">id Ngôn Ngữ cần lọc</param>
         public void filterPositions(string positionFilter)
         {
             isLoading = true;
@@ -132,9 +132,9 @@ namespace MyProject.Client.Pages
 
 
         /// <summary>
-        /// - Lọc theo chức danh 
+        /// - Lọc theo Vị Trí Ứng Tuyển 
         /// </summary>
-        /// <param name="roleFilter">id chức danh cân lọc</param>
+        /// <param name="roleFilter">id Vị Trí Ứng Tuyển cân lọc</param>
         public void filterRoles(string roleFilter)
         {
             isLoading = true;

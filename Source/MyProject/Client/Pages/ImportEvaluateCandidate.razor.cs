@@ -96,7 +96,7 @@ namespace MyProject.Client.Pages
         }
 
         /// <summary>
-        /// -Lọc theo vị trí
+        /// -Lọc theo Ngôn Ngữ
         /// </summary>
         /// <param name="e">Data nhận mỗi khi có change event</param>
         public void filterPositions(ChangeEventArgs e)
@@ -124,7 +124,7 @@ namespace MyProject.Client.Pages
 
 
         /// <summary>
-        /// -Lọc dánh sách qua Chức Danh
+        /// -Lọc dánh sách qua Vị Trí Ứng Tuyển
         /// </summary>
         /// <param name="e">Data nhận vào mỗi khi có change event</param>
         public void filterRoles(ChangeEventArgs e)

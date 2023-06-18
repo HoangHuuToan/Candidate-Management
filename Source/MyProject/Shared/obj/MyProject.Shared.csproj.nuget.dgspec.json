@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ToanHH\\intership_Blazor_ToanHH_202303\\Source\\MyProject\\Shared\\MyProject.Shared.csproj": {}
+    "C:\\ToanHH\\Candidate-Management\\Source\\MyProject\\Shared\\MyProject.Shared.csproj": {}
   },
   "projects": {
-    "C:\\ToanHH\\intership_Blazor_ToanHH_202303\\Source\\MyProject\\Shared\\MyProject.Shared.csproj": {
+    "C:\\ToanHH\\Candidate-Management\\Source\\MyProject\\Shared\\MyProject.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ToanHH\\intership_Blazor_ToanHH_202303\\Source\\MyProject\\Shared\\MyProject.Shared.csproj",
+        "projectUniqueName": "C:\\ToanHH\\Candidate-Management\\Source\\MyProject\\Shared\\MyProject.Shared.csproj",
         "projectName": "MyProject.Shared",
-        "projectPath": "C:\\ToanHH\\intership_Blazor_ToanHH_202303\\Source\\MyProject\\Shared\\MyProject.Shared.csproj",
-        "packagesPath": "C:\\Users\\ToanHH\\.nuget\\packages\\",
-        "outputPath": "C:\\ToanHH\\intership_Blazor_ToanHH_202303\\Source\\MyProject\\Shared\\obj\\",
+        "projectPath": "C:\\ToanHH\\Candidate-Management\\Source\\MyProject\\Shared\\MyProject.Shared.csproj",
+        "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
+        "outputPath": "C:\\ToanHH\\Candidate-Management\\Source\\MyProject\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ToanHH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -67,8 +67,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -77,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

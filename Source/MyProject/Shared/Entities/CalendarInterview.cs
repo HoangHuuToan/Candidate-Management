@@ -15,7 +15,7 @@ namespace MyProject.Shared.Entities
         public DateTime timeInterview { get; set; }
 
         public string addressInterview { get; set; } = string.Empty;
-        public int roominterview { get; set; }
+        public int? roominterview { get; set; }
         
         public List<int> idUserInterviews { get; set; } = new List<int> { };
         public List<string> nameUserInterviews { get; set; } = new List<string> { };
