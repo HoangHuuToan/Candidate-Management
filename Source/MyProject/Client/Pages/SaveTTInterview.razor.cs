@@ -121,7 +121,11 @@ namespace MyProject.Client.Pages
             {
                 await JS.InvokeVoidAsync("alert", "Mời Chọn Phòng Họp!");
             }
-            else
+            else if (!UserInterviews.Any(x => x.selected == true)) 
+            {
+                await JS.InvokeVoidAsync("alert", "Mời Chọn Người Phỏng Vấn!");
+            }
+            else 
             {
                 try
                 {//Update Calendar
@@ -147,9 +151,12 @@ namespace MyProject.Client.Pages
                         }
                     });
 
-                    if (interview_UserInterviews.Exists(x => calendarInterview_UserInterviews.FirstOrDefault().id_calendarinterview == x.id_calendarinterview))
+                    if (calendarInterview_UserInterviews.Count != 0) 
                     {
-                        await httpClient.DeleteAsync("https://localhost:44365/api/CalendarInterview_UserInterview/" + calendarInterview_UserInterviews.FirstOrDefault().id_calendarinterview);
+                        if (interview_UserInterviews.Exists(x => calendarInterview_UserInterviews.FirstOrDefault().id_calendarinterview == x.id_calendarinterview))
+                        {
+                            await httpClient.DeleteAsync("https://localhost:44365/api/CalendarInterview_UserInterview/" + calendarInterview_UserInterviews.FirstOrDefault().id_calendarinterview);
+                        }
                     }
 
                     //calendarInterview_UserInterviews.ForEach(async (x) => {  });
@@ -159,7 +166,7 @@ namespace MyProject.Client.Pages
                         var abc = await httpClient.PostAsJsonAsync("https://localhost:44365/api/CalendarInterview_UserInterview", x);
                     }
                     await JS.InvokeVoidAsync("ShowMessaggeSuccess");
-                    CloseSaveTT();
+                    await CloseSaveTT();
                 }
                 catch (Exception ex)
                 {
