@@ -9,7 +9,7 @@
     </div>
 
     <div class="m-2">
-        <label>Vị Trí:</label>
+        <label>Ngôn Ngữ:</label>
         <select @onchange="(e) => filterPositions(e.Value.ToString())" class="form-select">
             <option value="0" selected>ALL</option>
             @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 1))
@@ -21,7 +21,7 @@
 
     <div class="m-2">
 
-        <label>Chức Danh:</label>
+        <label>Vị Trí Ứng Tuyển:</label>
         <select @onchange="(e) => filterRoles(e.Value.ToString())" class="form-select">
             <option value="0" selected>ALL</option>
             @foreach (var vlcbb in valuesOfCombs.FindAll((x) => x.valueOfComb == 2))
@@ -46,11 +46,11 @@
         </th>
 
         <th>
-            Chức Danh
+            Vị Trí Ứng Tuyển
         </th>
 
         <th>
-            Vị Trí
+            Ngôn Ngữ
         </th>
 
         <th>

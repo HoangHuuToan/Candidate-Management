@@ -15,11 +15,12 @@ namespace MyProject.Server.Repository
 
             conn.Open();
 
-            string sql = "INSERT INTO `candidate_management`.`calendarinterview_userinterview` (`id_calendarinterview`, `id_userinterview`) VALUES ( @id_calendarinterview , @id_userinterview );";
+            string sql = "INSERT INTO `candidate_management`.`calendarinterview_userinterview` (`id_calendarinterview`, `id_userinterview`,`note_evaluate`) VALUES ( @id_calendarinterview , @id_userinterview,@note_evaluate );";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             cmd.Parameters.Add("id_calendarinterview", MySqlDbType.Int32).Value = calendarInterview_UserInterview.id_calendarinterview;
             cmd.Parameters.Add("id_userinterview", MySqlDbType.Int32).Value = calendarInterview_UserInterview.id_userinterview;
+            cmd.Parameters.Add("note_evaluate", MySqlDbType.String).Value = calendarInterview_UserInterview.note_evaluate;
 
             cmd.ExecuteNonQuery();
 
