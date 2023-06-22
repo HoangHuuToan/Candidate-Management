@@ -39,9 +39,9 @@ namespace MyProject.Server.Controllers
                 user_login.access_token = accessToken;
                 user_login.time_access = jwtSecurityToken.Claims.ElementAt(4).Value;
             }
-            else 
+            else
             {
-                user_login.access_token =string.Empty;
+                user_login.access_token = string.Empty;
             }
 
 
@@ -49,10 +49,22 @@ namespace MyProject.Server.Controllers
             return user_login;
         }
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("register")]
+        public async Task<bool> registerUser(User userRegister)
         {
-            return "value";
+            try
+            {
+                UserRepo userRepo = new UserRepo();
+                await userRepo.registerUser(userRegister);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+
         }
 
         // POST api/<UserController>
@@ -62,9 +74,20 @@ namespace MyProject.Server.Controllers
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("update")]
+        public async Task<bool> Put([FromBody] User userUpdate)
         {
+            try
+            {
+                UserRepo userRepo = new UserRepo();
+                await userRepo.updateUser(userUpdate);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
 
         // DELETE api/<UserController>/5

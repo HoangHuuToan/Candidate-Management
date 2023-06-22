@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using MyProject.Client.LoginManagements;
 using MyProject.Shared.Entities;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace MyProject.Client.Pages
 {
@@ -13,9 +14,16 @@ namespace MyProject.Client.Pages
         public bool statusLogin { get; set; } = false;
         public User dataUserloginLocalStorate { get; set; } = new User();
 
+        public bool stt_showFormApply { get; set; } = false;
         [Inject] IJSRuntime JS { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            string abc = "Hoàng Hữu Toàn";
+
+            string mahoa = Encoding.UTF8.GetBytes(abc).ToString();
+
+            Console.WriteLine(mahoa);
+
             try
             {
                 isLoading = true;
@@ -67,7 +75,15 @@ namespace MyProject.Client.Pages
                 isLoading = false;
                 StateHasChanged();
             }
-            
+
+        }
+        public void showFormApply()
+        {
+            stt_showFormApply = true;
+        }
+        public void closeFormApply()
+        {
+            stt_showFormApply = false;
         }
     }
 }

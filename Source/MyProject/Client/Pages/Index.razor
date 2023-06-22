@@ -1,17 +1,49 @@
 ﻿@page "/"
+@layout MyLayout
 
-@if (statusLogin)
+<div class="body">
+    @if (statusLogin)
+    {
+        <div style="position: fixed;right: 0;">
+            <button class="btn btn-dark" onclick="@Logout">Đăng Xuất</button>
+        </div>
+        
+    }
+    <div class="content">
+        <h1 style="font-weight: bold;font-size: 80px; margin: 0;">Candidate-Management</h1>
+        @if (statusLogin)
+        {
+            <span>Xin chào</span>
+            <h3>@dataUserloginLocalStorate.Name</h3>
+        }
+        <h4>Chào mừng bạn đến với trang web ứng tuyển của công ty chúng tôi</h4>
+        @if (!statusLogin)
+        {
+            <div>
+                <button class="btn btn-primary"> <a href="https://localhost:44365/login" style="color:white;text-decoration:none;">Đăng Nhập</a></button>
+            </div>
+        }
+        else
+        {
+            @if (dataUserloginLocalStorate.Role ==1)
+            {
+                <button class="btn_apply"> <a href="https://localhost:44365/importCandidate">Quản Lý</a></button>
+            }else
+            {
+                <button class="btn_apply" onclick="@showFormApply">Ứng Tuyển</button>
+            }
+
+        }
+
+
+    </div>
+</div>
+@if (@stt_showFormApply)
 {
-    @layout MyLayout
-    <span>Xin chào</span>
-    <h3>@dataUserloginLocalStorate.Name</h3>
-}
-
-<h3>Chào Mừng Bạn Đến Trang Web Tuyển Dụng </h3>
-
-@if (!statusLogin)
-{
-    <div>
-        <button class="btn btn-primary"> <a href="https://localhost:44365/login" style="color:white;text-decoration:none;">Đăng Nhập</a></button>
+    <div class="bgr">
+    </div>
+    <div class="content-import">
+        <button class="btn_close" onclick="@closeFormApply"><i class="fa-solid fa-xmark fa-beat"></i></button>
+        <Import_Candidate></Import_Candidate>
     </div>
 }

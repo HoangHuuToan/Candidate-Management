@@ -25,11 +25,19 @@
         <hr style="height:2px;border-width:0;color:gray;background-color:gray;width:320px ; margin:auto;margin-top: 10px;margin-bottom: 10px;">
 
         <div class=" d-flex justify-content-center">
-            <button class="btn btn-success btn-register fw-bold">Đăng Ký</button>
+            <button class="btn btn-success btn-register fw-bold" onclick="@registerUser">Đăng Ký</button>
         </div>
     </div>
 </div>
-@if(isLoading)
+@if (isLoading)
 {
     <LoadingCpn></LoadingCpn>
+}
+@if (isRegister)
+{
+    <Register Close=closeFormApply></Register>
+}
+@if (isVerified)
+{
+    <Verified_code userLogin="@user_login"></Verified_code>
 }

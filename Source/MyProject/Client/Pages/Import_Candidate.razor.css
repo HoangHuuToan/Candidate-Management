@@ -1,0 +1,15 @@
+﻿.btn_apply {
+    width: 100px;
+    height: 45px;
+    background-color: cornflowerblue;
+    font-weight: bold;
+    border: none;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    color: white;
+}
+
+.btn_apply:hover {
+    cursor: pointer;
+}

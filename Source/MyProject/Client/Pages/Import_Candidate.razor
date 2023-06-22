@@ -12,7 +12,7 @@
             <tr>
                 <td>
                     <label>Vị Trí Ứng Tuyển</label>
-                    <select @bind="candidate.Role">
+                <select @bind="candidate.Role" class="form-select">
                         @foreach (var value in valuesOfCombs)
                         {
                             if (value.valueOfComb == 2)
@@ -26,7 +26,7 @@
                 </td>
                 <td>
                     <label>Địa Chỉ</label>
-                    <input @bind="candidate.Address" type="text" />
+                <input @bind="candidate.Address" type="text" class="form-control" />
                 </td>
             </tr>
 
@@ -34,7 +34,7 @@
             <tr>
                 <td>
                     <label>Ngôn Ngữ</label>
-                    <select @bind="candidate.Position">
+                <select @bind="candidate.Position" class="form-select">
 
                         @foreach (ValuesOfComb value in valuesOfCombs)
                         {   @if (value.valueOfComb == 1)
@@ -50,18 +50,18 @@
                 </td>
                 <td>
                     <label>Số Điện Thoại</label>
-                    <input @bind="candidate.NumberPhone" type="text" />
+                <input @bind="candidate.NumberPhone" type="text" class="form-control" />
                 </td>
             </tr>
 
             <tr>
                 <td>
                     <label>Họ và Tên</label>
-                    <input @bind="candidate.Name" type="text" />
+                <input @bind="candidate.Name" type="text" class="form-control" />
                 </td>
                 <td>
                     <label>Email</label>
-                    <input @bind="candidate.Email" type="text" />
+                <input @bind="candidate.Email" type="text" class="form-control" />
                 </td>
             </tr>
 
@@ -69,11 +69,11 @@
             <tr>
                 <td>
                     <label>Ngày Sinh</label>
-                    <input @bind="candidate.BirthDay" type="date" />
+                <input @bind="candidate.BirthDay" type="date" class="form-control" />
                 </td>
                 <td>
                     <label>Nguồn</label>
-                    <select @bind="candidate.Origin">
+                <select @bind="candidate.Origin" class="form-select">
                         @foreach (ValuesOfComb value in valuesOfCombs)
                         {   @if (value.valueOfComb == 3)
                             {
@@ -90,7 +90,7 @@
                 <td colspan="2">
                     <label>Upload CV Ứng Viên</label>
 
-                    <InputFile OnChange="LoadFile"></InputFile>
+                <InputFile OnChange="LoadFile" class="form-control"></InputFile>
                 </td>
             </tr>
 
@@ -99,7 +99,7 @@
 
         </table>
 
-        <button onclick="@show_importCandidate">Nhập</button>
+    <button class="btn_apply" onclick="@show_importCandidate">Nhập</button>
     </EditForm>
 
 @if(show_Cpn_Confirm)

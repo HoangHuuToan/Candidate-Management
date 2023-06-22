@@ -1,0 +1,25 @@
+﻿body {
+}
+.input-code {
+    width: 70px;
+    height: 70px;
+    font-size: 25px;
+    text-align: center;
+    font-weight:bold;
+}
+.virified-code {
+    margin:auto !important;
+    border-radius:5px;
+    width: 700px !important;
+    height: 350px !important;
+    background-color: white;
+}
+.code-verifi {
+    margin: auto;
+    margin-top: 60px;
+}
+.btn-verifi {
+    display: block;
+    margin: auto;
+    margin-top: 80px
+}

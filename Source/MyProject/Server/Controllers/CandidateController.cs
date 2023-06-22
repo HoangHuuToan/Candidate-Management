@@ -16,9 +16,9 @@ namespace MyProject.Server.Controllers
         public IActionResult Get()
         {
             CandidateRepo candidateRepo = new CandidateRepo();
-            
+
             return Ok(candidateRepo.GetCandidates()); //Statuscode 
-        }   
+        }
 
         // GET api/<CandidateController>/5
         [HttpGet("{id}")]
@@ -35,7 +35,7 @@ namespace MyProject.Server.Controllers
         {
             CandidateRepo candidateRepo = new CandidateRepo();
 
-            return Ok(candidateRepo.GetCandidatesBySTT(id)) ; //Statuscode 
+            return Ok(candidateRepo.GetCandidatesBySTT(id)); //Statuscode 
         }
 
         [HttpGet("AddTTInterview")]
@@ -98,8 +98,8 @@ namespace MyProject.Server.Controllers
             byte[] bytes = Convert.FromBase64String(candidate.strBase64pdf);
             //File.WriteAllBytes(@"C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Server\cvCandidate\abc.pdf", bytes);
 
-            if (!candidate.pathCV.IsNullOrEmpty()) 
-            { 
+            if (!candidate.pathCV.IsNullOrEmpty())
+            {
                 System.IO.FileStream stream =
                 new FileStream(candidate.pathCV, FileMode.CreateNew);
                 System.IO.BinaryWriter writer =
@@ -107,7 +107,7 @@ namespace MyProject.Server.Controllers
                 writer.Write(bytes, 0, bytes.Length);
                 writer.Close();
             }
-            
+
         }
 
         // PUT api/<CandidateController>/5

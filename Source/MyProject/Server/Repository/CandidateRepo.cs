@@ -436,7 +436,8 @@ namespace MyProject.Server.Repository
 
             conn.Open();
             string sql = "select candidate.*, calendarinterview.*,calendarinterview_userinterview.evaluate,calendarinterview_userinterview.note_evaluate,calendarinterview_userinterview.id_userinterview,j2.name_interview as 'userinterviewName' ,j1.name_status as 'statusName' " +
-                "from  candidate inner join candidate_status as j1 on candidate.statusCandidate = j1.id_status,  calendarinterview  ,    calendarinterview_userinterview inner join userinterview as j2 on calendarinterview_userinterview.id_userinterview = j2.id " +
+                "from  candidate inner join candidate_status as j1 on candidate.statusCandidate = j1.id_status,  calendarinterview  ,  " +
+                "  calendarinterview_userinterview inner join userinterview as j2 on calendarinterview_userinterview.id_userinterview = j2.id " +
                 "where candidate.id = calendarinterview.id_candidate and calendarinterview.id_interview = calendarinterview_userinterview.id_calendarinterview and candidate.id = @id_candidate ;";
                         
 
@@ -475,7 +476,7 @@ namespace MyProject.Server.Repository
                 candidate.addressInterview = reader.GetString("address_interview");
                 candidate.room_interview = reader["room_interview"] == DBNull.Value ? 0 : reader.GetInt32("room_interview");
                 candidate.evaluate = reader.GetInt32("evaluate");
-                candidate.note_evaluate = reader.GetString("note_evaluate");
+                candidate.note_evaluate = reader["note_evaluate"] == DBNull.Value ? "" : reader.GetString("note_evaluate");
                 candidate.id_userinterview = reader.GetInt32("id_userinterview");
                 candidate.userinterviewName = reader.GetString("userinterviewName");
                 candidate.nameStatus = reader.GetString("statusName");

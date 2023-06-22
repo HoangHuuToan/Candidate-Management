@@ -11,7 +11,7 @@ function CloseCurrentTab()
 
 }
 function LoginSuccess() {
-    window.location.href = "https://localhost:44365/importCandidate";
+    window.location.href = "https://localhost:44365/";
 
 }
 function Logout() {

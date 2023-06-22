@@ -46,8 +46,8 @@ namespace MyProject.Server.Controllers
             //mailRequest.Body = mailRequest.Body.Replace("@nameCandidate", mailRequest.nameCandidate);
 
             htmlString = htmlString.Replace("@candidateName", mailRequest.nameCandidate);
-            htmlString = htmlString.Replace("@contentMail",mailRequest.Body);
-            
+            htmlString = htmlString.Replace("@contentMail", mailRequest.Body);
+
             mailRequest.Body = htmlString;
 
             using (MailMessage mail = new MailMessage())
@@ -64,7 +64,7 @@ namespace MyProject.Server.Controllers
                 {
                     int i = 0;
                     foreach (var stringBase64file in mailRequest.StringFileAttachments)
-                    {   
+                    {
                         byte[] bytes = Convert.FromBase64String(stringBase64file);
 
                         var contents = new StreamContent(new MemoryStream(bytes)).ReadAsStream();
@@ -72,9 +72,9 @@ namespace MyProject.Server.Controllers
                         var fileattachment = new System.Net.Mail.Attachment(contents, mailRequest.nameFileAttachments[i].ToString());
 
                         mail.Attachments.Add(fileattachment);
-                        i ++;
+                        i++;
                     }
-                   
+
                 }
 
 

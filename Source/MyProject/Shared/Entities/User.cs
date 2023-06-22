@@ -25,6 +25,7 @@ namespace MyProject.Shared.Entities
 
         public string access_token { get; set; } = string.Empty;
         public string time_access { get; set; } = string.Empty;
+        public DateTime birth_day { get; set; } = DateTime.Now;
         public User(int id, string name, string email, string address, int number_phone, int role, string role_name)
         {
             this.id = id;
