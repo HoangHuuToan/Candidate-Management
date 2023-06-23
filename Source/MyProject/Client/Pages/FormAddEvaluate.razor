@@ -1,11 +1,11 @@
 ﻿<div class="bgr">
 </div>
-<div class="prvMail">
+<div class="saveTTPV">
     <div>
         <button class="btn float-end" onclick="@CloseThis"><i class="fa-regular fa-rectangle-xmark"></i></button>
     </div>
     <h3>Đánh Giá Ứng Viên : @CandidateEvaluate.Name</h3>
-    <select @bind="equal">
+    <select @bind="equal" class="form-select">
         <option selected value="1">
             Chưa Đánh Giá
         </option>
@@ -18,13 +18,11 @@
 
 
     </select>
-
-    @equal
     <br />
 
     <h3>Người Đánh Giá :</h3>
 
-    <select @bind="id_user_evaluate">
+    <select @bind="id_user_evaluate" class="form-select">
         @foreach (var userEvaluate in calendarInterview_UserInterviewsUnevaluate)
         {
             <option value="@userEvaluate.id_userinterview">

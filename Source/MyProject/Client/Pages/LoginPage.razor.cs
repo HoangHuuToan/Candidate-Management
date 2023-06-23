@@ -80,6 +80,7 @@ namespace MyProject.Client.Pages
                     }
                     else
                     {
+                        await JS.InvokeVoidAsync("alert", "Đăng Nhập Thành Công");
                         await JS.InvokeVoidAsync("LoginSuccess");
                     }
 

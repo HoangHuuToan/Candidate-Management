@@ -54,6 +54,8 @@ namespace MyProject.Client.Pages
                 StateHasChanged();
             }
             isLoading = false;
+            StateHasChanged();
+
         }
 
         public void ChangeFilter()
@@ -157,6 +159,8 @@ namespace MyProject.Client.Pages
                 //fillers[2] = Int32.Parse(dataP.Value.ToString());
             }
             ChangeFilter();
+            StateHasChanged();
+
         }
         #endregion search-filter
 
@@ -202,10 +206,8 @@ namespace MyProject.Client.Pages
 
             valuesOfCombs = await httpClient.GetFromJsonAsync<List<ValuesOfComb>>("https://localhost:44365/api/ValueOfComb");
             statusCandidates = await httpClient.GetFromJsonAsync<List<StatusCandidate>>("https://localhost:44365/api/StatusCandidate");
-
-
-            StateHasChanged();
             isLoading = false;
+            StateHasChanged();
         }
 
         /// <summary>
@@ -219,6 +221,8 @@ namespace MyProject.Client.Pages
             CandidateSendOffer = CandidateEvaluates.FirstOrDefault((x)=> x.id == id_candidate);
             showFormSendOffer = true;
             isLoading = false;
+            StateHasChanged();
+
         }
 
 
@@ -231,6 +235,8 @@ namespace MyProject.Client.Pages
             await getData();
             showFormSendOffer = false;
             isLoading = false;
+            StateHasChanged();
+
         }
         #endregion functions
 

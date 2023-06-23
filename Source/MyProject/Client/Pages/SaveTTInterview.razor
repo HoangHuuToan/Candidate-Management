@@ -1,95 +1,90 @@
 ﻿<div class="bgr"></div>
-    <div class="saveTTPV">
+<div class="saveTTPV">
 
-        <h3>Save Information Interview</h3>
+    <h3>Nhập Thông Tin Phỏng Vấn</h3>
 
-        <table>
-            <tr>
-                <th colspan="2">
-                    Nhập Thông Tin Phỏng Vấn
-                </th>
-            </tr>
-            <tr>
-                <td>
-                    <label>Tiêu Đề</label>
-                </td>
-                <td>
-                    <span>@calendarSave.nameInterview</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Thời Gian
-                </td>
-                <td>
-                    <span>@calendarSave.timeInterview</span>
-                </td>
-            </tr>
+    <table style="text-align:center;" class="d-block m-auto">
 
-            <tr>
-                <td>
-                    Địa Điểm
-                </td>
-                <td>
-                    <span>@calendarSave.addressInterview</span>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <label>Tiêu Đề</label>
+            </td>
+            <td>
+                <span>@calendarSave.nameInterview</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Thời Gian
+            </td>
+            <td>
+                <span>@calendarSave.timeInterview</span>
+            </td>
+        </tr>
 
-            <tr>
-                <td>
-                    Người Phỏng Vấn :
-                </td>
-                <td>
+        <tr>
+            <td>
+                Địa Điểm
+            </td>
+            <td>
+                <span>@calendarSave.addressInterview</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Người Phỏng Vấn :
+            </td>
+            <td>
+
+                <div class="d-flex flex-column">
+                    @foreach (var userInterview in UserInterviews)
+                    {
+                        <div class="d-flex">
+                            @if (userInterview.selected == true)
+                            {
+                                <input type="checkbox" checked @onchange="()=>checkListUserInterview(userInterview.id)" />
+                                <span>@userInterview.name</span>
+                            }
+                            else
+                            {
+                                <input type="checkbox" @onchange="()=>checkListUserInterview(userInterview.id)" />
+                                <span>@userInterview.name</span>
+                            }
+
+                        </div>
+                    }
+                </div>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Phòng Họp
+            </td>
+            <td>
+                <select @bind="@roominterview">
+                    <option value="1" selected>
+                        Phòng 141
+                    </option>
+                    <option value="2">
+                        Phòng 142
+                    </option>
+                </select>
+            </td>
+        </tr>
+
+    </table>
+    <div>
 
 
-                    <div class="d-flex">
-                        @foreach (var userInterview in UserInterviews)
-                        {
-                            <div class="d-flex">
-                                @if (userInterview.selected == true)
-                                {
-                                    <input type="checkbox" checked @onchange="()=>checkListUserInterview(userInterview.id)" />
-                                    <span>@userInterview.name</span>
-                                }
-                                else
-                                {
-                                    <input type="checkbox" @onchange="()=>checkListUserInterview(userInterview.id)" />
-                                    <span>@userInterview.name</span>
-                                }
-
-                            </div>
-                        }
-                    </div>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    Phòng Họp
-                </td>
-                <td>
-                    <select @bind="@roominterview">
-                        <option value="1" selected>
-                            Phòng 141
-                        </option>
-                        <option value="2">
-                            Phòng 142
-                        </option>
-                    </select>
-                </td>
-            </tr>
-
-        </table>
         <div>
-
-
-            <div>
-                <button onclick="@saveTTCalendar">Save</button>
-                <button onclick="@CloseSaveTT">Cancel</button>
-            </div>
+            <button class="btn btn-primary" onclick="@saveTTCalendar">Save</button>
+            <button class="btn btn-danger" onclick="@CloseSaveTT">Cancel</button>
         </div>
     </div>
+</div>
 @if (isLoading)
 {
     <LoadingCpn></LoadingCpn>

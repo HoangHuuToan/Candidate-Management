@@ -8,6 +8,6 @@ namespace MyProject.Shared.Path
 {
     public class link
     {
-        public static string Path_Folder_CV = @"C:\ToanHH\intership_Blazor_ToanHH_202303\Source\MyProject\Server\wwwroot\cvCandidate\";
+        public static string Path_Folder_CV = @"C:\ToanHH\Candidate-Management\Source\MyProject\Server\wwwroot\cvCandidate\";
     }
 }

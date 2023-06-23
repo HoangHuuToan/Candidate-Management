@@ -1,13 +1,13 @@
 ﻿@using MyProject.Shared.Entities
 
 <div class="bgr"></div>
-<div class="cpn_confirm">
+<div class="cpn_confirm d-flex flex-column p-4">
     <h2>Thông Tin Ứng Viên</h2>
-    <table>
+    <table class="d-block m-auto text-center">
         <tr>
             <td>
                 <label>Vị Trí Ứng Tuyển</label>
-                <select @bind="candidate_insert.Role">
+                <select @bind="candidate_insert.Role" class="form-select">
                     @foreach (var value in valuesOfCombs)
                     {
                         if (value.valueOfComb == 2)
@@ -30,14 +30,14 @@
             </td>
             <td>
                 <label>Địa Chỉ</label>
-                <input type="text" @bind="@candidate_insert.Address" />
+                <input type="text" @bind="@candidate_insert.Address" class="form-control" />
             </td>
         </tr>
 
         <tr>
             <td>
                 <label>Ngôn Ngữ </label>
-                <select @bind="candidate_insert.Position">
+                <select @bind="candidate_insert.Position" class="form-select">
 
                     @foreach (ValuesOfComb value in valuesOfCombs)
                     {   @if (value.valueOfComb == 1)
@@ -53,29 +53,29 @@
             </td>
             <td>
                 <label>Số Điện Thoại</label>
-                <input type="text" @bind="@candidate_insert.NumberPhone" />
+                <input type="text" @bind="@candidate_insert.NumberPhone" class="form-control" />
             </td>
         </tr>
 
         <tr>
             <td>
                 <label>Họ và Tên</label>
-                <input type="text" @bind="@candidate_insert.Name" />
+                <input type="text" @bind="@candidate_insert.Name" class="form-control" />
             </td>
             <td>
                 <label>Email</label>
-                <input type="text" @bind="@candidate_insert.Email" />
+                <input type="text" @bind="@candidate_insert.Email" class="form-control" />
             </td>
         </tr>
 
         <tr>
             <td>
                 <label>Ngày Sinh</label>
-                <input type="date" @bind="@candidate_insert.BirthDay" />
+                <input type="date" @bind="@candidate_insert.BirthDay" class="form-control" />
             </td>
             <td>
                 <label>Nguồn</label>
-                <select @bind="candidate_insert.Origin">
+                <select @bind="candidate_insert.Origin" class="form-select">
                     @foreach (ValuesOfComb value in valuesOfCombs)
                     {   @if (value.valueOfComb == 3)
                         {
@@ -88,9 +88,11 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <button onclick="@importCandidate">OK</button>
-                <button @onclick="@closeConfirm">CANCEL</button>
+            <td>
+                <button class="btn btn-primary" onclick="@importCandidate">OK</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" @onclick="@closeConfirm">CANCEL</button>
             </td>
         </tr>
     </table>
