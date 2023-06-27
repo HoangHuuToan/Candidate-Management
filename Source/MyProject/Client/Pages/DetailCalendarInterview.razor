@@ -16,11 +16,11 @@
 
     <div>
         <label>Thời Gian :</label>
-        <input type="text" @bind="@calendarInterview.timeInterview" />
+        <input type="text" @bind="@calendarInterview.timeInterview" class="form-control" style="text-align:center" />
     </div>
     <div>
         <label>Địa Điểm :</label>
-        <input type="text" @bind="@calendarInterview.addressInterview" />
+        <input type="text" @bind="@calendarInterview.addressInterview" class="form-control" style="text-align:center" />
     </div>
     <div class="d-flex w-100">
         <div class="m-auto d-flex">
@@ -31,12 +31,12 @@
                     <div class="d-flex">
                         @if (userInterview.selected == true)
                         {
-                            <input type="checkbox" checked @onchange="()=>checkListUserInterview(userInterview.id)" />
+                            <input type="checkbox" checked @onchange="()=>checkListUserInterview(userInterview.id)" class="form-check" />
                             <span>@userInterview.name</span>
                         }
                         else
                         {
-                            <input type="checkbox" @onchange="()=>checkListUserInterview(userInterview.id)" />
+                            <input type="checkbox" @onchange="()=>checkListUserInterview(userInterview.id)" class="form-check" />
                             <span>@userInterview.name</span>
                         }
 

@@ -35,7 +35,9 @@
     {
         <div>
             <h5> Lý Do Loại:</h5>
-            <input @bind="note" type="text" /> <span style="color:red">(*)</span>
+            <div class="d-flex" style="text-align:center;align-items:center;">
+                <input @bind="note" type="text" class="form-control" /> <span style="color:red ; font-weight:bold; ">(*)</span>
+            </div>        
         </div>
 
     }
@@ -43,7 +45,7 @@
     {
         <div>
             <h5>Nhận Xét:</h5>
-            <input @bind="note" type="text" />
+            <input @bind="note" type="text" class="form-control"/>
         </div>
 
     }
