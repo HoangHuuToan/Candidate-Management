@@ -1,9 +1,9 @@
 ﻿<div class="bgr"></div>
-<div class="prvMail">
+<div class="saveTTPV">
     <h3>ConfirmDelete</h3>
-    <h4>Bạn có chắc muốn xóa lịch phỏng vấn này ?</h4>
+    <h4>Bạn có chắc muốn xóa ?</h4>
     <div class="d-flex justify-content-around">
-        <button class="btn btn-info" @onclick="DeleteCalendarThis">Xóa</button>
+        <button class="btn btn-info" @onclick="DeleteThis">Xóa</button>
         <button class="btn btn-danger" @onclick="Closethis">Thoát</button>
     </div>
 
@@ -48,7 +48,7 @@
     /// - Xóa lịch pv hiện tại
     /// </summary>
     /// <returns></returns>
-    public async Task DeleteCalendarThis()
+    public async Task DeleteThis()
     {   
         isLoading = true;
         try

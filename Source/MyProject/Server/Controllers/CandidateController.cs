@@ -122,6 +122,8 @@ namespace MyProject.Server.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            CandidateRepo candidateRepo = new CandidateRepo();
+            candidateRepo.DeleteCandidate(id);
         }
     }
 }

@@ -666,5 +666,19 @@ namespace MyProject.Server.Repository
             return candidates;
         }
 
+        public void DeleteCandidate(int id_candidate)
+        {
+            MySqlConnection conn = AppSettings.GetConnection();
+            conn.Open();
+            string sql = "DELETE FROM candidate_management.candidate WHERE id = @id ; ";
+
+            MySqlCommand mySqlCommand = new MySqlCommand(sql, conn);
+
+            mySqlCommand.Parameters.Add("@id",MySqlDbType.Int32).Value = id_candidate;
+
+            mySqlCommand.ExecuteNonQuery(); 
+            conn.Close();
+        }
+
     }
 }

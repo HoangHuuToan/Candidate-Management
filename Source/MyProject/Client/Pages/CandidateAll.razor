@@ -98,6 +98,7 @@
             </td>
             <td>
                 <button class="btn btn-primary" @onclick="()=>update(candidate.id)">Chỉnh Sửa</button>
+                <button class="btn btn-danger" @onclick="()=>showFormCFDelete(candidate.id)">Xóa</button>
             </td>
 
         </tr>
@@ -113,4 +114,8 @@
 @if (showCpnUpdate)
 {
     <UpdateCandidate candidate="CandidateUpdate" Close="closeUpdate"></UpdateCandidate>
+}
+@if (isShowFormConfirmDelete)
+{
+    <ConfirmDelete Delete="()=>delete(id_CandidateDel)" Close="closeFormCFDel"></ConfirmDelete>
 }

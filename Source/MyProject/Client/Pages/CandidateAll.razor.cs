@@ -31,6 +31,9 @@ namespace MyProject.Client.Pages
         public int? filterRole { get; set; } = 0;
         public int? filterStt { get; set; } = 0;
         public bool isLoading { get; set; } = false;
+
+        public int id_CandidateDel { set; get; } = 0;
+        public bool isShowFormConfirmDelete { get; set; } = false;
         #endregion properties
 
         protected override async Task OnInitializedAsync()
@@ -211,10 +214,37 @@ namespace MyProject.Client.Pages
             showCpnUpdate = true;
             StateHasChanged();
         }
-
+        public void showFormCFDelete(int id_candidate)
+        {
+            id_CandidateDel = id_candidate;
+            isShowFormConfirmDelete = true;
+            StateHasChanged();
+        }
+        public async void delete(int id_candidate)
+        {
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                await httpClient.DeleteAsync("https://localhost:44365/api/Candidate/" + id_candidate);
+                await getData();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;
+            }
+            StateHasChanged();
+        }
         public async Task closeUpdate()
         {
             showCpnUpdate = false;
+            await getData();
+            StateHasChanged();
+        }
+
+        public async void closeFormCFDel()
+        {
+            isShowFormConfirmDelete = false;
             await getData();
             StateHasChanged();
         }
