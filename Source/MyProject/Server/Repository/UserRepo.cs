@@ -91,7 +91,7 @@ namespace MyProject.Server.Repository
                 conn.Open();
 
                 //insert data user
-                string sql1 = "INSERT INTO `candidate_management`.`user` (name, birth_day, address, number_phone, email, role, accout_name, accout_password, verified,verifi_code) VALUES (@name, @birth_day, @address, @number_phone, @email, 0, @accout_name, @accout_password, 0,@verifi_code);";
+                string sql1 = "INSERT INTO `candidate_management`.`user` (name, birth_day, address, number_phone, email, role, accout_name, accout_password, verified,verifi_code) VALUES (@name, @birth_day, @address, @number_phone, @email, 1, @accout_name, @accout_password, 0,@verifi_code);";
                 MySqlCommand cmd1 = new MySqlCommand(sql1, conn);
 
                 cmd1.Parameters.Add("@name", MySqlDbType.VarChar).Value = userRegister.Name;

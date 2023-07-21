@@ -67,6 +67,7 @@ namespace MyProject.Client.Pages
             catch (Exception ex) 
             {
                 Console.WriteLine(ex.ToString());
+                await JS.InvokeVoidAsync("alert", "Bạn đã đăng ký không thành công vui lòng kiểm tra lại thông tin !");
             }
             StateHasChanged();
         }

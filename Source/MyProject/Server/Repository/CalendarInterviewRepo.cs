@@ -92,7 +92,7 @@ namespace MyProject.Server.Repository
 
             conn.Open();
 
-            MySqlCommand mySqlCommand = new MySqlCommand("SELECT * FROM calendarinterview WHERE name_interview = @name_interview ; ", conn);
+            MySqlCommand mySqlCommand = new MySqlCommand("SELECT * FROM candidate_management.calendarinterview WHERE name_interview = @name_interview ; ", conn);
 
             mySqlCommand.Parameters.Add("name_interview", MySqlDbType.String).Value = name_interview;
 
