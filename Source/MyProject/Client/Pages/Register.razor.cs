@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.JSInterop;
 using MyProject.Client.LoginManagements;
 using MyProject.Shared.Entities;
@@ -49,6 +50,11 @@ namespace MyProject.Client.Pages
         {
             try
             {
+                if (user.Name.IsNullOrEmpty() || user.accout_name.IsNullOrEmpty() || user.accout_password.IsNullOrEmpty() || user.Address.IsNullOrEmpty() || user.Number_phone <= 0 || user.Email.IsNullOrEmpty()) 
+                {
+                    await JS.InvokeVoidAsync("alert", "Mời bạn nhập đầy đủ thông tin để đăng ký !");
+                }
+                else { 
                 HttpClient httpClient = new HttpClient();
 
                 Random random = new Random();
@@ -63,6 +69,7 @@ namespace MyProject.Client.Pages
                 await JS.InvokeVoidAsync("alert","Bạn đã đăng ký thành công vui lòng kiểm tra mail để lấy mã xác thực !");
                 closeFormApply();
                 StateHasChanged();
+                }
             }
             catch (Exception ex) 
             {
